@@ -4,4 +4,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <string name="room_id_text">Room ID: %s</string>
+    <string name="room_pw_text">Room Password: %s</string>
+
 </resources>

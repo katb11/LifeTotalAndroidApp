@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TableRow;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -32,6 +33,9 @@ public class LifeCounterActivity extends AppCompatActivity implements LifeCounte
     private int currentUserTally = 0;
     private WebSocketClient mWebSocketClient;
 
+    private String roomID;
+    private String roomPw;
+
     private ArrayList<Integer> placeHolders = new ArrayList<>();
     private TreeMap<String, LifeCounterFragment> playerFragments = new TreeMap<>();
     private HashMap<Integer, String> playerTable = new HashMap<>();
@@ -44,10 +48,10 @@ public class LifeCounterActivity extends AppCompatActivity implements LifeCounte
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            String room = bundle.getString("room");
-            String password = bundle.getString("password");
+            roomID = bundle.getString("room");
+            roomPw = bundle.getString("password");
 
-            connectWebSocket(room, password);
+            connectWebSocket(roomID, roomPw);
 
             setContentView(R.layout.life_counter_main_layout);
 
@@ -56,6 +60,18 @@ public class LifeCounterActivity extends AppCompatActivity implements LifeCounte
             placeHolders.add(R.id.table_placeholder_3);
             placeHolders.add(R.id.table_placeholder_4);
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        TextView roomCode = findViewById(R.id.room_id_textview);
+        roomCode.setText(String.format(getString(R.string.room_id_text), roomID));
+
+        TextView pwCode = findViewById(R.id.room_pw_textview);
+        pwCode.setText(String.format(getString(R.string.room_pw_text), roomPw));
+
     }
 
     @Override

@@ -7,6 +7,25 @@
     tools:context="LifeCounter.LifeCounterActivity"
     android:id="@+id/container">
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="20dp">
+        <TextView
+            android:id="@+id/room_id_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="viewStart"
+            android:text="@string/room_id_text"
+            android:layout_weight="0.5" />
+        <TextView
+            android:id="@+id/room_pw_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="viewEnd"
+            android:text="@string/room_pw_text"
+            android:layout_weight="0.5" />
+    </LinearLayout>
     <TableRow
         android:id="@+id/table_placeholder_1"
         android:layout_width="match_parent"
