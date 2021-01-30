@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.lifetotal.BuildConfig;
 import com.example.lifetotal.LifeCounter.MainMenuActivity;
 import com.example.lifetotal.R;
 import com.example.lifetotal.Utils.APIService;
@@ -99,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
             apiService.setMethod("POST");
-            apiService.execute("http://192.168.1.199:8091/AuthenticationServer_war_exploded/authenticate", setParameters(user, pw));
+            apiService.execute(BuildConfig.AUTH_ENDPOINT + "/authenticate", setParameters(user, pw));
         }
     }
 

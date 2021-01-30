@@ -12,7 +12,13 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            buildConfigField "String", "AUTH_ENDPOINT", "\"http://192.168.1.199:8091/AuthenticationServer_war_exploded\""
+            buildConfigField "String", "API_ENDPOINT", "\"http://192.168.1.199:8076/lifeTotalServer_war_exploded\""
+        }
         release {
+            buildConfigField "String", "AUTH_ENDPOINT", "\"https://lifetotalauthenticationserver.azurewebsites.net\""
+            buildConfigField "String", "API_ENDPOINT", "\"https://lifetotalserver.azurewebsites.net\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }

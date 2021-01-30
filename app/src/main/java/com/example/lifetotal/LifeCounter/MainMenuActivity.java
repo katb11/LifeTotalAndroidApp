@@ -10,6 +10,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.lifetotal.BuildConfig;
 import com.example.lifetotal.R;
 import com.example.lifetotal.Utils.APIService;
 
@@ -84,7 +85,7 @@ public class MainMenuActivity extends AppCompatActivity {
             }
         });
         apiService.setMethod("POST");
-        apiService.execute("http://192.168.1.199:8076/lifeTotalServer_war_exploded/requestRoom", body.toString());
+        apiService.execute(BuildConfig.API_ENDPOINT + "/requestRoom", body.toString());
     }
 
     private void enterRoom(String roomID, String password) {
