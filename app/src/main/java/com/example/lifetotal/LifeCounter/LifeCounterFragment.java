@@ -12,13 +12,15 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.lifetotal.Models.PlayerAction;
+import com.example.lifetotal.Models.PlayerState;
 import com.example.lifetotal.R;
 
 
 public class LifeCounterFragment extends Fragment implements Comparable<LifeCounterFragment> {
 
     private TextView lifeTotalTextView;
-    public int lifeTotal = 20;
+
+    private PlayerState playerState;
     private String name;
     private int index;
     private boolean visible;
@@ -40,7 +42,7 @@ public class LifeCounterFragment extends Fragment implements Comparable<LifeCoun
     };
 
     void refreshLife() {
-        lifeTotalTextView.setText(Integer.toString(lifeTotal));
+        lifeTotalTextView.setText(Integer.toString(playerState.getLifeTotal()));
     }
 
     LifeCounterFragment(String name) {
@@ -61,7 +63,7 @@ public class LifeCounterFragment extends Fragment implements Comparable<LifeCoun
             TextView playerName = view.findViewById(R.id.playerName);
 
             playerName.setText(name);
-            lifeTotalTextView.setText(Integer.toString(lifeTotal));
+            lifeTotalTextView.setText(Integer.toString(playerState.getLifeTotal()));
 
             incrementButton.setOnClickListener(increment);
             decrementButton.setOnClickListener(decrement);
@@ -99,21 +101,30 @@ public class LifeCounterFragment extends Fragment implements Comparable<LifeCoun
         lifeTotalUpdate.update(action);
     }
 
-    public void setVisible(boolean visible) {
+    void setVisible(boolean visible) {
         this.visible = visible;
     }
 
-    public boolean getVisible() {
+    boolean getVisible() {
         return this.visible;
     }
 
-    public void setIndex(int index) {
+    void setIndex(int index) {
         this.index = index;
     }
 
-    public int getIndex() {
+    private int getIndex() {
         return this.index;
     }
+
+    public void setPlayerState(PlayerState playerState) {
+        this.playerState = playerState;
+    }
+
+    public PlayerState getPlayerState() {
+        return this.playerState;
+    }
+
 
     @Override
     public int compareTo(LifeCounterFragment other) {

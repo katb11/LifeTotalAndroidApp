@@ -66,18 +66,25 @@ public class MainMenuActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        getRoom(body.toString());
+    }
+
+    private void getRoom(String body) {
         APIService apiService = new APIService(new APIService.AsyncResponse() {
 
             @Override
             public void processFinish(String output) {
                 if (output != null) {
                     try {
-                        JSONObject resp = new JSONObject(output);
-                        String roomID = resp.getString("room");
-                        String password = resp.getString("password");
+                        if (output.equals("failure")) {
+                            String FAILURE = "success";
+                        } else {
+                            JSONObject resp = new JSONObject(output);
+                            String roomID = resp.getString("room");
+                            String password = resp.getString("password");
 
-                        enterRoom(roomID, password);
-
+                            enterRoom(roomID, password);
+                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -85,7 +92,7 @@ public class MainMenuActivity extends AppCompatActivity {
             }
         });
         apiService.setMethod("POST");
-        apiService.execute(BuildConfig.API_ENDPOINT + "/requestRoom", body.toString());
+        apiService.execute(BuildConfig.API_ENDPOINT + "/requestRoom", body);
     }
 
     private void enterRoom(String roomID, String password) {
@@ -114,7 +121,21 @@ public class MainMenuActivity extends AppCompatActivity {
                 roomID = roomEdit.getText().toString();
                 password = passwordEdit.getText().toString();
                 commentDialog.dismiss();
-                enterRoom(roomID, password);
+
+                SharedPreferences sharedPreferences = getSharedPreferences("internalVals", MODE_PRIVATE);
+                String token = sharedPreferences.getString("token", "");
+
+                JSONObject body = new JSONObject();
+
+                try {
+                    body.put("token", token);
+                    body.put("room", roomID);
+                    body.put("password", password);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                getRoom(body.toString());
             }
         });
         Button cancelBtn = commentDialog.findViewById(R.id.cancel);

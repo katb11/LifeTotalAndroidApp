@@ -8,6 +8,7 @@ import android.widget.TableRow;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.lifetotal.BuildConfig;
 import com.example.lifetotal.Models.PlayerAction;
 import com.example.lifetotal.Models.PlayerState;
 import com.example.lifetotal.R;
@@ -66,7 +67,7 @@ public class LifeCounterActivity extends AppCompatActivity implements LifeCounte
     private void connectWebSocket(String room, final String password) {
         URI uri;
         try {
-            uri = new URI("ws://192.168.1.199:8076/lifeTotalServer_war_exploded/room/" + room);
+            uri = new URI(BuildConfig.API_ENDPOINT + "/room/" + room);
         } catch (URISyntaxException e) {
             e.printStackTrace();
             return;
@@ -111,6 +112,8 @@ public class LifeCounterActivity extends AppCompatActivity implements LifeCounte
                                     if (!playerFragments.containsKey(key)) {
                                         LifeCounterFragment playerFragment = new LifeCounterFragment(key);
                                         playerFragment.setIndex(currentUserTally);
+                                        playerFragment.setPlayerState(playerStates.get(key));
+
                                         playerTable.put(currentUserTally, key);
                                         currentUserTally++;
 
@@ -129,7 +132,7 @@ public class LifeCounterActivity extends AppCompatActivity implements LifeCounte
                                 LifeCounterFragment lcf = playerFragments.get(action.getUsername());
 
                                 if (lcf != null) {
-                                    lcf.lifeTotal = playerStates.get(action.getUsername()).getLifeTotal();
+                                    lcf.getPlayerState().setLifeTotal(playerStates.get(action.getUsername()).getLifeTotal());
                                     lcf.refreshLife();
                                 }
 
