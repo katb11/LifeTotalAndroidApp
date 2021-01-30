@@ -1,6 +1,5 @@
 package com.example.lifetotal.LifeCounter;
 
-import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;

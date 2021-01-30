@@ -99,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
             apiService.setMethod("POST");
-            apiService.execute("http://192.168.1.199:8091/AuthenticationServer_war_exploded/authenticate", setParameters(user, pw));
+            apiService.execute(System.getenv("AuthServerURL") + "/authenticate", setParameters(user, pw));
         }
     }
 
