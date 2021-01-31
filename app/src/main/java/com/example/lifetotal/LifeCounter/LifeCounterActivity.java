@@ -126,7 +126,8 @@ public class LifeCounterActivity extends AppCompatActivity implements LifeCounte
                             case JOINED:
                                 for (String key : playerStates.keySet()) {
                                     if (!playerFragments.containsKey(key)) {
-                                        LifeCounterFragment playerFragment = new LifeCounterFragment(key);
+                                        LifeCounterFragment playerFragment = new LifeCounterFragment();
+                                        playerFragment.setName(key);
                                         playerFragment.setIndex(currentUserTally);
                                         playerFragment.setPlayerState(playerStates.get(key));
 

@@ -2,6 +2,7 @@ package com.example.lifetotal.LifeCounter;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,15 +46,18 @@ public class LifeCounterFragment extends Fragment implements Comparable<LifeCoun
         lifeTotalTextView.setText(Integer.toString(playerState.getLifeTotal()));
     }
 
-    LifeCounterFragment(String name) {
-        this.name = name;
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.life_counter_layout, container, false);
+
+        if (savedInstanceState != null) {
+            this.name = savedInstanceState.getString("name");
+            this.index = savedInstanceState.getInt("index");
+            this.visible = savedInstanceState.getBoolean("visible");
+            this.playerState = savedInstanceState.getParcelable("playerState");
+        }
 
         if (view != null) {
             visible = true;
@@ -73,15 +77,17 @@ public class LifeCounterFragment extends Fragment implements Comparable<LifeCoun
     }
 
     @Override
-    public void onInflate(Context context, AttributeSet attrs, Bundle savedInstanceState) {
-        super.onInflate(context, attrs, savedInstanceState);
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString("name", this.name);
+        savedInstanceState.putInt("index", this.index);
+        savedInstanceState.putBoolean("visible", this.visible);
+        savedInstanceState.putParcelable("playerState", this.playerState);
     }
 
-
-    // Define the events that the fragment will use to communicate
-    public interface OnClickListener {
-        // This can be any number of events to be sent to the activity
-        void update(PlayerAction action);
+    @Override
+    public void onInflate(Context context, AttributeSet attrs, Bundle savedInstanceState) {
+        super.onInflate(context, attrs, savedInstanceState);
     }
 
     // Store the listener (activity) that will have events fired once the fragment is attached
@@ -94,6 +100,18 @@ public class LifeCounterFragment extends Fragment implements Comparable<LifeCoun
             throw new ClassCastException(context.toString()
                     + " must implement LifeCounterFragment.OnClickListener");
         }
+    }
+
+    @Override
+    public int compareTo(LifeCounterFragment other) {
+        return this.getIndex() - other.getIndex();
+    }
+
+
+    // Define the events that the fragment will use to communicate
+    public interface OnClickListener {
+        // This can be any number of events to be sent to the activity
+        void update(PlayerAction action);
     }
 
     private void update(String player, String type) {
@@ -117,17 +135,19 @@ public class LifeCounterFragment extends Fragment implements Comparable<LifeCoun
         return this.index;
     }
 
-    public void setPlayerState(PlayerState playerState) {
+    void setPlayerState(PlayerState playerState) {
         this.playerState = playerState;
     }
 
-    public PlayerState getPlayerState() {
+    PlayerState getPlayerState() {
         return this.playerState;
     }
 
+    String getName() {
+        return this.name;
+    }
 
-    @Override
-    public int compareTo(LifeCounterFragment other) {
-        return this.getIndex() - other.getIndex();
+    void setName(String name) {
+        this.name = name;
     }
 }
