@@ -44,6 +44,11 @@ public class MainMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //hide top title bar
+        if (this.getSupportActionBar() != null) {
+            this.getSupportActionBar().hide();
+        }
+
         setContentView(R.layout.main_menu_layout);
 
         hostButton = findViewById(R.id.host_session);
