@@ -1,26 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:layout_width="fill_parent" android:layout_height="fill_parent"       android:background="#ffffff">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+    tools:ignore="Autofill">
 
-    <EditText android:layout_width="fill_parent"
-        android:layout_gravity="center" android:layout_height="wrap_content"
-        android:hint="Enter Room ID" android:id="@+id/roomEdit" android:textColor="#000000"
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_id"
+        android:id="@+id/roomEdit"
+        android:textColor="#000000"
+        android:inputType="text"
         android:lines="1" />
 
     <EditText android:layout_width="fill_parent"
-        android:layout_gravity="center" android:layout_height="wrap_content"
-        android:hint="Enter Password" android:id="@+id/passwordEdit" android:textColor="#000000"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_pw"
+        android:id="@+id/passwordEdit"
+        android:textColor="#000000"
         android:lines="1"
-        android:visibility="invisible"/>
+        android:inputType="text"
+        android:visibility="invisible"
+        tools:ignore="TextFields" />
 
-    <LinearLayout android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent">
-        <Button android:id="@+id/ok" android:layout_height="wrap_content"
-            android:layout_width="wrap_content" android:text="Join Room"  android:layout_weight="1"
-            />
-        <Button android:id="@+id/cancel" android:layout_height="wrap_content"
-            android:layout_width="wrap_content"  android:layout_weight="1"
+
+        <Button
+            android:id="@+id/ok"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/join_room"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
             android:text="@android:string/cancel" />
+
     </LinearLayout>
 </LinearLayout>
