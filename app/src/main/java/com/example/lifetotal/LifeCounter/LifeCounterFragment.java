@@ -1,6 +1,7 @@
 package com.example.lifetotal.LifeCounter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.AttributeSet;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.example.lifetotal.Models.PlayerAction;
@@ -21,10 +23,15 @@ public class LifeCounterFragment extends Fragment implements Comparable<LifeCoun
 
     private TextView lifeTotalTextView;
 
+    private int mainColor;
+    private int buttonColor;
     private PlayerState playerState;
     private String name;
     private int index;
     private boolean visible;
+
+    Button incrementButton, decrementButton;
+    CardView mainView;
 
     private LifeCounterFragment.OnClickListener lifeTotalUpdate;
 
@@ -71,6 +78,12 @@ public class LifeCounterFragment extends Fragment implements Comparable<LifeCoun
 
             incrementButton.setOnClickListener(increment);
             decrementButton.setOnClickListener(decrement);
+
+            mainView = view.findViewById(R.id.main);
+
+            mainView.setBackgroundColor(mainColor);
+            incrementButton.setBackgroundColor(buttonColor);
+            decrementButton.setBackgroundColor(buttonColor);
         }
 
         return view;
@@ -117,6 +130,11 @@ public class LifeCounterFragment extends Fragment implements Comparable<LifeCoun
     private void update(String player, String type) {
         PlayerAction action = new PlayerAction(player, PlayerAction.PlayerUpdate.UPDATE_LIFETOTAL, type);
         lifeTotalUpdate.update(action);
+    }
+
+    public void setColors(String color1, String color2) {
+        this.mainColor = Color.parseColor(color1);
+        this.buttonColor = Color.parseColor(color2);
     }
 
     void setVisible(boolean visible) {

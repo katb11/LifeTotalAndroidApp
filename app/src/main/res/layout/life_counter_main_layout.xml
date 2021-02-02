@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="LifeCounter.LifeCounterActivity"
-    android:id="@+id/container">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="LifeCounter.LifeCounterActivity">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -26,36 +26,101 @@
             android:layout_weight="0.5"
             android:visibility="invisible"/>
     </LinearLayout>
-    <TableRow
-        android:id="@+id/table_placeholder_1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_gravity="center">
-    </TableRow>
 
-    <TableRow
-        android:id="@+id/table_placeholder_2"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_gravity="center">
-    </TableRow>
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
 
-    <TableRow
-        android:id="@+id/table_placeholder_3"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0"
-        android:layout_gravity="center">
-    </TableRow>
+        <RelativeLayout
+            android:id="@+id/table_placeholder_1a"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintRight_toLeftOf="@id/table_placeholder_1b"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="1.0"/>
 
-    <TableRow
-        android:id="@+id/table_placeholder_4"
+        <RelativeLayout
+            android:id="@+id/table_placeholder_1b"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintLeft_toRightOf="@id/table_placeholder_1a"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="0.0"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0"
-        android:layout_gravity="center">
-    </TableRow>
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/table_placeholder_2a"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintRight_toLeftOf="@id/table_placeholder_2b"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="1.0" />
+
+        <RelativeLayout
+            android:id="@+id/table_placeholder_2b"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintLeft_toRightOf="@id/table_placeholder_2a"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="0.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/table_placeholder_3a"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintRight_toLeftOf="@id/table_placeholder_3b"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="1.0" />
+
+        <RelativeLayout
+            android:id="@+id/table_placeholder_3b"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintLeft_toRightOf="@id/table_placeholder_3a"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="0.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/table_placeholder_4a"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintRight_toLeftOf="@id/table_placeholder_4b"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="1.0" />
+
+        <RelativeLayout
+            android:id="@+id/table_placeholder_4b"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintLeft_toRightOf="@id/table_placeholder_4a"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="0.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </TableLayout>

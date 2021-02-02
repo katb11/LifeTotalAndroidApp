@@ -56,6 +56,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
         hostButton.setOnClickListener(host);
         joinButton.setOnClickListener(join);
+
     }
 
     private void createRoom() {
@@ -82,7 +83,7 @@ public class MainMenuActivity extends AppCompatActivity {
                 if (output != null) {
                     try {
                         if (output.equals("failure")) {
-                            String FAILURE = "success";
+
                         } else {
                             JSONObject resp = new JSONObject(output);
                             String roomID = resp.getString("room");
@@ -108,6 +109,11 @@ public class MainMenuActivity extends AppCompatActivity {
         Intent i = new Intent(getBaseContext(), LifeCounterActivity.class);
         i.putExtras(bundle);
         startActivity(i);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
     private void joinRoom() {
@@ -154,5 +160,4 @@ public class MainMenuActivity extends AppCompatActivity {
 
         commentDialog.show();
     }
-
 }

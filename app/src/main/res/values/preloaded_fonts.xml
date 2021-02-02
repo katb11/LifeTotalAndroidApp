@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
+        <item>@font/alegreya_bold</item>
         <item>@font/belgrano</item>
         <item>@font/bungee</item>
+        <item>@font/piedra</item>
     </array>
 </resources>
