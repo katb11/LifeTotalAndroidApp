@@ -3,12 +3,15 @@ package com.example.lifetotal.LifeCounter;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.LightingColorFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.lifetotal.BuildConfig;
 import com.example.lifetotal.R;
@@ -119,6 +122,7 @@ public class MainMenuActivity extends AppCompatActivity {
     private void joinRoom() {
         final Dialog commentDialog = new Dialog(this);
         commentDialog.setContentView(R.layout.room_dialog_layout);
+        commentDialog.getWindow().getDecorView().getBackground().setColorFilter(new LightingColorFilter(0xFF000000, Color.TRANSPARENT));
 
         Button okButton = commentDialog.findViewById(R.id.ok);
         final EditText roomEdit = commentDialog.findViewById(R.id.roomEdit);

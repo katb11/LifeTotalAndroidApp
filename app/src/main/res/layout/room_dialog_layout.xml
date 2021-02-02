@@ -1,50 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#ffffff"
+    app:cardBackgroundColor="#34376a"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp"
     tools:ignore="Autofill">
-
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_gravity="center"
-        android:layout_height="wrap_content"
-        android:hint="@string/enter_id"
-        android:id="@+id/roomEdit"
-        android:textColor="#000000"
-        android:inputType="text"
-        android:lines="1" />
-
-    <EditText android:layout_width="fill_parent"
-        android:layout_gravity="center"
-        android:layout_height="wrap_content"
-        android:hint="@string/enter_pw"
-        android:id="@+id/passwordEdit"
-        android:textColor="#000000"
-        android:lines="1"
-        android:inputType="text"
-        android:visibility="invisible"
-        tools:ignore="TextFields" />
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="25dp">
 
-        <Button
-            android:id="@+id/ok"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/LoginTextInputLayoutStyle"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="@string/join_room"
-            android:layout_weight="1" />
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:textColorHint="#FFFFFF">
 
-        <Button
-            android:id="@+id/cancel"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/roomEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:hint="@string/enter_id"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <EditText android:layout_width="fill_parent"
+            android:layout_gravity="center"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:text="@android:string/cancel" />
+            android:hint="@string/enter_pw"
+            android:id="@+id/passwordEdit"
+            android:textColor="#000000"
+            android:lines="1"
+            android:inputType="text"
+            android:visibility="invisible"
+            tools:ignore="TextFields" />
 
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <com.google.android.material.button.MaterialButton
+                android:backgroundTint="#5B5D83"
+                android:textColor="@android:color/white"
+                android:id="@+id/ok"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:background="#5AE74F"
+                android:text="@string/join_room" />
+
+            <com.google.android.material.button.MaterialButton
+                android:backgroundTint="#5B5D83"
+                android:textColor="@android:color/white"
+                android:id="@+id/cancel"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:background="#5AE74F"
+                android:text="@android:string/cancel" />
+
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</androidx.cardview.widget.CardView>
